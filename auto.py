@@ -119,6 +119,6 @@ if __name__ == "__main__":
     os.system("bash -c '%s'" % bash_script)
     csv_path = os.getcwd()
     csv_path = os.path.join(csv_path, 'data/Casos_positivos_de_COVID-19_en_Colombia.csv')
-    columnas = ['id_de_caso','fecha_de_notificaci_n','codigo_divipola','ciudad_de_ubicaci_n','departamento','atenci_n','edad','sexo','tipo','estado','pa_s_de_procedencia','fis','fecha_de_muerte','fecha_diagnostico','fecha_recuperado','fecha_reporte_web','tipo_recuperaci_n','cod_depto','cod_pais','Pertenencia_etnica','Nombre grupo etnico']
+    columnas = ['id_de_caso','fecha_de_notificaci_n','codigo_divipola','ciudad_de_ubicaci_n','departamento','atenci_n','edad','sexo','tipo','estado','pa_s_de_procedencia','fis','fecha_de_muerte','fecha_diagnostico','fecha_recuperado','fecha_reporte_web','tipo_recuperaci_n','cod_depto','cod_pais','Pertenencia_etnica','Nombre_grupo_etnico', 'nuevo']
     data = pd.read_csv(csv_path, names=columnas)
     result = conditioning(data)
