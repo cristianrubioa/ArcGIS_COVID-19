@@ -67,15 +67,9 @@ class conditioning(object):
         self.df.fecha_de_notificaci_n = self.df.fecha_de_notificaci_n.dt.strftime('%m/%d/%Y')
         self.df.fecha_diagnostico = pd.to_datetime(self.df['fecha_diagnostico'])
         self.df.fecha_diagnostico = self.df.fecha_diagnostico.dt.strftime('%m/%d/%Y')
-        #self.df.fecha_recuperado=pd.to_datetime(self.df['fecha_recuperado'])
-        #self.df.fecha_recuperado=self.df.fecha_recuperado.dt.strftime('%m/%d/%Y')
         print(self.df.fecha_reporte_web)
         self.df.fecha_reporte_web = pd.to_datetime(self.df['fecha_reporte_web'])
         self.df.fecha_reporte_web = self.df.fecha_reporte_web.dt.strftime('%m/%d/%Y')
-        #self.df.fecha_de_muerte=pd.to_datetime(self.df.fecha_de_muerte)
-        #self.df.fecha_de_muerte=self.df.fecha_de_muerte.dt.strftime('%m/%d/%Y')
-        #self.df.fis=pd.to_datetime(self.df['fis'])
-        #self.df.fis=self.df.fis.dt.strftime('%m/%d/%Y')
         self.df.to_csv("data/Casos_positivos_de_COVID-19_en_Colombia_filtered.csv", index=False, encoding='utf-8-sig')
 
         # Colombia
@@ -101,7 +95,6 @@ class conditioning(object):
             Tolima_acum['ID_Tolima'][pos] = int(k+1)
         Tolima_acum = Tolima_acum[['fecha_diagnostico','ID_Tolima','ciudad_de_ubicaci_n']]
         Tolima_acum.to_csv("data/Tolima.csv", index=False, encoding='utf-8-sig')
-        #Tolima_acum.to_csv(path_main+"/Casos_acumulados.csv",index = False, encoding='utf-8-sig')
 
     def adjust_format(self):
         tolima_data = pd.read_csv('data/Tolima.csv')            
@@ -112,11 +105,11 @@ class conditioning(object):
 
         tolima_data['Object_ID'] = tolima_data['ID_Tolima']
         tolima_data = tolima_data.reindex(columns=['Object_ID','fecha_diagnostico', 'ID_Tolima', 'ciudad_de_ubicaci_n'])
-        tolima_data.to_csv('data/Tolima.csv', index=False)
+        tolima_data.to_csv('data/Tolima.csv', index=False, encoding='utf-8-sig')
 
 
 if __name__ == "__main__":
-    os.system("bash -c '%s'" % bash_script)
+    #os.system("bash -c '%s'" % bash_script)
     csv_path = os.getcwd()
     csv_path = os.path.join(csv_path, 'data/Casos_positivos_de_COVID-19_en_Colombia.csv')
     columnas = ['id_de_caso','fecha_de_notificaci_n','codigo_divipola','ciudad_de_ubicaci_n','departamento','atenci_n','edad','sexo','tipo','estado','pa_s_de_procedencia','fis','fecha_de_muerte','fecha_diagnostico','fecha_recuperado','fecha_reporte_web','tipo_recuperaci_n','cod_depto','cod_pais','Pertenencia_etnica','Nombre_grupo_etnico', 'nuevo']
