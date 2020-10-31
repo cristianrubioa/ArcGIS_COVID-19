@@ -3,7 +3,7 @@
 
 __author__ = "Harold F. Murcia | Sergio A. Balaguera | Cristian F. Rubio Aguiar."
 __copyright__ = "Copyright 2020, Sistema de Respuesta COVID-19, Tolima"
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __status__ = "Dev"
 
 
@@ -54,11 +54,6 @@ class conditioning(object):
         self.df = self.df.replace("San Sebastián de Mariquita", correct_name)
 
     def date_adjust(self):
-        print(self.df.fecha_diagnostico)
-
-        self.df.to_csv("data/Casos_positivos_de_COVID-19_en_Colombia_filtered.csv",
-                       index=False, encoding='utf-8-sig')
-
         # Colombia
         Data_rank = self.df.groupby(['departamento']).count()
         Data_rank = Data_rank[['id_de_caso', 'edad']]
@@ -104,7 +99,6 @@ if __name__ == "__main__":
     csv_path = os.getcwd()
     csv_path = os.path.join(
         csv_path, 'data/Casos_positivos_de_COVID-19_en_Colombia.csv')
-
     columnas = ['fecha_reporte_web', 'id_de_caso', 'fecha_de_notificaci_n', 'cod_depto', 'departamento', 'codigo_divipola', 'ciudad_de_ubicaci_n', 'edad', 'uuu', 'sexo', 'tipo', 'ubicacion_caso', 'estado',
                 'cod_pais', 'pa_s_de_procedencia', 'atenci_n', 'fis', 'fecha_de_muerte', 'fecha_diagnostico', 'fecha_recuperado', 'tipo_recuperaci_n', 'pertenencia_etnica', 'nombre_grupo_etnico']
     data = pd.read_csv(csv_path, names=columnas)
