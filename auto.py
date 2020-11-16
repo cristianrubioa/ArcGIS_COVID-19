@@ -66,8 +66,6 @@ class conditioning(object):
                          index=False, encoding='utf-8-sig')
 
         # Tolima
-        self.df = self.df.sort_values(by=['fecha_reporte_web'])
-        print(self.df.shape)
         Tolima_acum = self.df
         drop_rows = Tolima_acum.loc[(Tolima_acum['departamento'] != 'TOLIMA')]
         Tolima_acum["ID_Tolima"] = ""
@@ -86,8 +84,7 @@ class conditioning(object):
     def adjust_format(self):
         tolima_data = pd.read_csv('data/Tolima.csv')
         tolima_data = tolima_data.fillna(method="ffill")
-
-        tolima_data['Object_ID'] = tolima_data['ID_Tolima']
+        tolima_data['Object_ID'] = range(1, len(tolima_data.index)+1)
         tolima_data = tolima_data.reindex(
             columns=['Object_ID', 'fecha_diagnostico', 'ID_Tolima', 'ciudad_de_ubicaci_n'])
         tolima_data.to_csv('data/Tolima.csv', index=False,
